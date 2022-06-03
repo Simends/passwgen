@@ -7,6 +7,10 @@ extern int getopt(int argc, char * const argv[], const char *optstring);
 extern char *optarg;
 extern void arc4random_buf(void *buf, size_t nbytes);
 
+void printUsage() {
+  printf("usage: passwdgen [ -h ] [ -v ] [ -l length ] [ -s ] [ -c ] [ -n ]\n");
+}
+
 int main(int argc, char **argv)
 {
   int i, opt;
@@ -15,8 +19,11 @@ int main(int argc, char **argv)
   int nosym = 0;
   int nocap = 0;
   int nonum = 0;
-  while ((opt = getopt(argc, argv, "l:scn")) != -1) {
+  while ((opt = getopt(argc, argv, "hvl:scn")) != -1) {
     switch (opt) {
+      case 'h':
+        printUsage();
+        exit(0);
       case 'l':
         len = atoi(optarg);
         break;
