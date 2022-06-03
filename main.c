@@ -11,6 +11,27 @@ void printUsage() {
   printf("usage: passwdgen [ -h ] [ -v ] [ -l length ] [ -s ] [ -c ] [ -n ]\n");
 }
 
+void toNonSym(char *c) {
+  if (*c < '0') {
+    *c += '0' - '!';
+  }
+  if (*c > '9' && *c < 'A') {
+    *c += 'A' - '9';
+  }
+  if (*c > 'Z' && *c < 'a') {
+    *c += 'a' - 'Z';
+  }
+  if (*c > 'z') {
+    *c -= '~' - 'z';
+  }
+}
+
+void toNonNum(char *c) {
+  if (*c > '/' && *c < ':') {
+    *c += 'A' - '0';
+  }
+}
+
 int main(int argc, char **argv)
 {
   int i, opt;
@@ -43,23 +64,10 @@ int main(int argc, char **argv)
   for (i = 0; i < len; i++) {
     c = abs(passwd[i]) % ('~' - '!') + '!';
     if (nosym) {
-      if (c < '0') {
-        c += '0' - '!';
-      }
-      if (c > '9' && c < 'A') {
-        c += 'A' - '9';
-      }
-      if (c > 'Z' && c < 'a') {
-        c += 'a' - 'Z';
-      }
-      if (c > 'z') {
-        c -= '~' - 'z';
-      }
+      toNonSym(&c);
     }
     if (nonum) {
-      if (c > '/' && c < ':') {
-        c += 'A' - '0';
-      }
+      toNonNum(&c);
     }
     if (nocap) {
       c = tolower(c);
