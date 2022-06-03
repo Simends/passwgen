@@ -1,9 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-extern int getopt(int argc, char * const argv[], const char *optstring);
+extern int getopt(int argc, char *const argv[], const char *optstring);
 extern char *optarg;
 extern void arc4random_buf(void *buf, size_t nbytes);
 
@@ -32,8 +32,7 @@ void toNonNum(char *c) {
   }
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   int i, opt;
   int len = 8;
   char c;
@@ -42,21 +41,21 @@ int main(int argc, char **argv)
   int nonum = 0;
   while ((opt = getopt(argc, argv, "hvl:scn")) != -1) {
     switch (opt) {
-      case 'h':
-        printUsage();
-        exit(0);
-      case 'l':
-        len = atoi(optarg);
-        break;
-      case 's':
-        nosym = 1;
-        break;
-      case 'c':
-        nocap = 1;
-        break;
-      case 'n':
-        nonum = 1;
-        break;
+    case 'h':
+      printUsage();
+      exit(0);
+    case 'l':
+      len = atoi(optarg);
+      break;
+    case 's':
+      nosym = 1;
+      break;
+    case 'c':
+      nocap = 1;
+      break;
+    case 'n':
+      nonum = 1;
+      break;
     }
   }
   int passwd[len];
