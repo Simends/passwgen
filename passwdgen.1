@@ -1,0 +1,27 @@
+.TH PASSWDGEN passwdgen\-1.0.0
+.SH NAME
+passwdgen
+.SH SYNOPSIS
+.B passwdgen
+.RB [ \-h ] [ \-v ] [ \-l length ] [ \-s ] [ \-c ] [ \-n ]
+.SH DESCRIPTION
+passwdgen is a simple tool to generate secure passwords with specified length. It will simply print out the generated password on stdout with the given options.
+.SH OPTIONS
+.TP
+.B \-h
+prints usage information then exits.
+.TP
+-B \-v
+prints version information then exits.
+.TP
+.B \-l length
+specify the length of the generated password. If no length is specified a standard length of 8 characters is used.
+.TP
+.B \-s
+the generated password will not contain special symbols.
+.TP
+.B \-c
+the generated password will not contain capitalized letters.
+.TP
+.B \-n
+the generated password will not contain numbers.
