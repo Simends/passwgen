@@ -3,12 +3,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#define PASSWDGEN_VERSION "1.0.0"
+
 extern int getopt(int argc, char *const argv[], const char *optstring);
 extern char *optarg;
 extern void arc4random_buf(void *buf, size_t nbytes);
 
 void printUsage() {
   printf("usage: passwdgen [ -h ] [ -v ] [ -l length ] [ -s ] [ -c ] [ -n ]\n");
+}
+
+void printVersion() {
+  printf("passwdgen %s\n", PASSWDGEN_VERSION);
 }
 
 void toNonSym(char *c) {
@@ -43,6 +49,9 @@ int main(int argc, char **argv) {
     switch (opt) {
     case 'h':
       printUsage();
+      exit(0);
+    case 'v':
+      printVersion();
       exit(0);
     case 'l':
       len = atoi(optarg);
